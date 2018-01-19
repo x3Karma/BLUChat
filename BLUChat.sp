@@ -61,6 +61,6 @@ public Action:Command_Say(client, args)
 			PrintCenterTextAll("%s: %s", name, text);
 		}
 	}
-	return Plugin_Continue;
+	return Plugin_Handled;
 }
 
