@@ -39,6 +39,14 @@ public Action Event_RoundStart(Handle hEvent, const char[] sName, bool bDontBroa
 	CPrintToChatAll("{titangrey}Titan.TF | {titanblue}%i {titanwhite}donators found on BLU team.", donators);
 }
 
+public TF2Jail_OnWardenCreated(int client)
+{
+	if (CheckCommandAccess(client, "sm_pets", ADMFLAG_CUSTOM6))
+	{
+		CPrintToChatAll("{titangrey}Titan.TF | {titanwhite}Donator detected. Warden's message will now appear on HUD.");
+	}
+}
+
 public Action:Command_Say(client, args)
 {
 	new String:text[192];
