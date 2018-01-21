@@ -28,7 +28,7 @@ public Action Event_RoundStart(Handle hEvent, const char[] sName, bool bDontBroa
 	int donators = 0;
 	for (new client = 1; client <= MaxClients; client++)
 	{
-		if (GetClientTeam(client) == view_as<int>(TFTeam_Blue))
+		if (GetEntityTeamNum(client) == 3)
 		{
 			if (CheckCommandAccess(client, "sm_pets", ADMFLAG_CUSTOM6))
 			{
@@ -36,14 +36,14 @@ public Action Event_RoundStart(Handle hEvent, const char[] sName, bool bDontBroa
 			}
 		}
 	}
-	CPrintToChatAll("{titangrey}Titan.TF | {titanblue}%i {titanwhite}donators found on BLU team.", donators);
+	PrintToChatAll("[SM] %i donators found on BLU team.", donators);
 }
 
 public TF2Jail_OnWardenCreated(int client)
 {
 	if (CheckCommandAccess(client, "sm_pets", ADMFLAG_CUSTOM6))
 	{
-		CPrintToChatAll("{titangrey}Titan.TF | {titanwhite}Donator detected. Warden's message will now appear on HUD.");
+		PrintToChatAll("[SM] Donator detected. Warden's message will now appear on HUD.");
 	}
 }
 
@@ -64,3 +64,7 @@ public Action:Command_Say(client, args)
 	return Plugin_Handled;
 }
 
+stock GetEntityTeamNum(iEnt)
+{
+    return GetEntProp(iEnt, Prop_Send, "m_iTeamNum");
+}
